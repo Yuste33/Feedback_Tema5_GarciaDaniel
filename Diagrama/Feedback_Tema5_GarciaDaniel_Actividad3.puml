@@ -1,0 +1,36 @@
+@startuml
+title Arquitectura de Plataforma Inteligente de Gestión de Proyectos
+
+package "Frontend" {
+  [Web App] --> (API Gateway)
+  [Mobile App] --> (API Gateway)
+}
+
+package "Backend" {
+  (API Gateway) --> [Gestión de Usuarios]
+  (API Gateway) --> [Gestión de Proyectos]
+  (API Gateway) --> [IA y Predicción]
+  (API Gateway) --> [Notificaciones]
+  (API Gateway) --> [Integraciones]
+
+  [Gestión de Usuarios] --> (Base de Datos Relacional)
+  [Gestión de Proyectos] --> (Base de Datos Relacional)
+  [IA y Predicción] --> (Motor de IA)
+  [Notificaciones] --> (Servicios Externos)
+  [Integraciones] --> (APIs Externas)
+}
+
+package "Infraestructura" {
+  (Base de Datos Relacional)
+  (Base de Datos NoSQL)
+  (Redis Cache)
+  (Motor de IA)
+  (Mensajería - Kafka/RabbitMQ)
+  (Monitorización - Prometheus/Grafana)
+}
+
+[Gestión de Usuarios] --> (Mensajería - Kafka/RabbitMQ)
+[Gestión de Proyectos] --> (Mensajería - Kafka/RabbitMQ)
+[IA y Predicción] --> (Mensajería - Kafka/RabbitMQ)
+
+@enduml
